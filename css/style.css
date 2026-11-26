@@ -103,6 +103,29 @@ html { scroll-padding-top: 9rem; } /* Sprungziele landen unter dem festen Kopfbe
    Ecken passend zum Rahmen im SVG (rx 18 bei 960 x 480), roter Versatzschatten wie bei den Produktkarten */
 .startbild img { border-radius: 1.875% / 3.75%; box-shadow: 6px 6px 0 var(--rot); }
 .startbild img, .bild img { display: block; width: 100%; height: auto; }
+/* Startbereich ohne Scrollen voll sichtbar (Handy, Tablet, PC):
+   - Handy hochkant: Bild zuerst, direkt unter dem Kopfbereich, dann Titel und Button
+   - Tablet hochkant: Titel oben, Bild darunter, Höhe an die Fensterhöhe gekoppelt
+   - quer und breit: Titel links, Bild rechts; Bildbreite höchstens doppelte freie Höhe (Format 2 : 1) */
+.start { padding: 1.5rem 0; }
+.weihnachten .start { padding-top: 4rem; } /* Kugeln unter dem Kopfbereich verdecken sonst den oberen Bildrand */
+.start .rahmen { align-items: center; }
+.startbild { justify-self: center; width: 100%; max-width: calc((100vh - 26rem) * 2); }
+@media (orientation: portrait) { .startbild { min-width: min(100%, 16rem); } }
+@media (max-width: 39.99rem) and (orientation: portrait) {
+  .startbild { order: -1; max-width: none; }
+  .start .rahmen { gap: 1.25rem; }
+}
+@media (min-width: 56rem), (orientation: landscape) and (min-width: 36rem) {
+  .start .rahmen { grid-template-columns: minmax(15rem, 22rem) minmax(0, 1fr); gap: 2rem; }
+  .startbild { max-width: calc((100vh - 15rem) * 2); justify-self: end; }
+  .weihnachten .startbild { max-width: calc((100vh - 18rem) * 2); } /* Kugeln brauchen Platz unter dem Kopf */
+}
+/* Handy quer (wenig Höhe): Bild oben bündig neben dem Titel, Größe aus der restlichen Höhe */
+@media (orientation: landscape) and (max-height: 30rem) {
+  .start .rahmen { align-items: start; }
+  .startbild, .weihnachten .startbild { max-width: calc((100vh - 13rem) * 2); }
+}
 
 /* ===== 4. Produkte ===== */
 .raster { display: grid; gap: 1.5rem; grid-template-columns: repeat(2, 1fr); list-style: none; padding: 0; margin: 0 0 2rem; }
