@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zapi! – Heiß. Knusprig. Sofort. (Demo-Shop)</title>
+<meta name="description" content="Zapi! Demo-Shop: überbackene Baguettes vorbestellen und am Automaten abholen oder gekühlt liefern lassen. Keine echten Bestellungen.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="img/favicon-180.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/app.js" defer></script>
+<script src="js/warenkorb.js" defer></script>
+</head>
+<body>
+
+<a class="springen" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- 1. Demo-Hinweis -->
+<p class="demo" role="note">Demo-Shop: keine echten Bestellungen</p>
+
+<!-- 2. Kopfbereich -->
+<header class="kopf">
+  <div class="rahmen">
+    <a class="logo" href="#inhalt" aria-label="Zapi! Startseite">Zapi<span>!</span></a>
+    <!-- Nur auf schmalen Bildschirmen sichtbar und nur mit JavaScript (siehe js/app.js) -->
+    <a class="button warenkorb-mini" href="warenkorb.html" aria-label="Warenkorb, 0 Artikel"><img src="img/warenkorb.svg" alt="" width="24" height="24"> <span class="wk-zahl">0</span></a>
+    <button class="button menue-knopf" type="button" aria-expanded="false" aria-controls="menue">Menü</button>
+    <div class="menue" id="menue">
+      <nav aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="#produkte">Produkte</a></li>
+          <li><a href="#so-gehts">So geht's</a></li>
+          <li><a href="#standorte">Standorte</a></li>
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#service">Service</a></li>
+        </ul>
+      </nav>
+      <a class="button warenkorb" href="warenkorb.html" aria-label="Warenkorb, 0 Artikel">Warenkorb (<span class="wk-zahl">0</span>)</a>
+    </div>
+  </div>
+</header>
+
+<main id="inhalt">
+
+  <!-- 3. Startbereich -->
+  <section class="start" aria-labelledby="start-titel">
+    <div class="rahmen">
+      <div>
+        <h1 id="start-titel"><span>Heiß.</span> <span>Knusprig.</span> <span>Sofort.</span></h1>
+        <p>Vorbestellen, Wunschzeit wählen, ohne Warten abholen.</p>
+        <a class="button gross" href="#produkte">Jetzt vorbestellen</a>
+      </div>
+      <div class="startbild">
+        <img src="img/start-standorte.svg" alt="Illustration in zwei Hälften: Links ein Zapi!-Automat am Bahnsteig einer großen gewölbten Bahnhofshalle mit Weihnachtsbaum. Vorne holt jemand seinen Zapi aus dem Abholfach, dahinter essen Leute auf einer Bank. Rechts ein Zapi!-Automat unter einem Vordach an einer verschneiten Autobahnraststätte. Ein Fahrer holt seinen Zapi, eine Familie und Gäste am Stehtisch essen, im Hintergrund liegen Autobahn und Rasthaus." width="960" height="480">
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Produkte -->
+  <section id="produkte" aria-labelledby="produkte-titel">
+    <div class="rahmen">
+      <h2 id="produkte-titel">Such dir deinen Zapi! aus</h2>
+      <ul class="raster">
+        <li class="karte">
+          <div class="bild">
+            <span class="badge">Bestseller</span>
+            <a class="bild-link" href="produkte/champignon.html" tabindex="-1" aria-hidden="true"><img src="img/zapi-champignon.svg" alt="Illustration: Zapi! Champignon auf einem Holzbrett, knusprige Kruste, goldbraun überbackener Käse, Champignonscheiben, Ketchup und Schnittlauch, dampfend" width="400" height="300"></a>
+          </div>
+          <h3><a href="produkte/champignon.html">Zapi! Champignon</a></h3>
+          <p>Mit Bergkäse und Parmesan. Saftig, würzig, knusprig.</p>
+          <p class="preis">5,90 €</p>
+          <p class="hinweis">Abholung am Automaten, inkl. MwSt.</p>
+          <a class="info" href="#allergene-info">Zutaten &amp; Allergene</a>
+          <a class="button in-warenkorb" href="#bestaetigung" data-id="champignon" data-name="Zapi! Champignon" data-cent="590" data-art="abholung" aria-label="Zapi! Champignon in den Warenkorb">In den Warenkorb</a>
+        </li>
+        <li class="karte">
+          <div class="bild">
+            <a class="bild-link" href="produkte/salami.html" tabindex="-1" aria-hidden="true"><img src="img/zapi-salami.svg" alt="Illustration: Zapi! Salami auf einem Holzbrett, knusprige Kruste, goldbraun überbackener Käse, Salamischeiben, Ketchup und Schnittlauch, dampfend" width="400" height="300"></a>
+          </div>
+          <h3><a href="produkte/salami.html">Zapi! Salami</a></h3>
+          <p>Mit Bergkäse und Parmesan. Kräftig und richtig heiß.</p>
+          <p class="preis">6,40 €</p>
+          <p class="hinweis">Abholung am Automaten, inkl. MwSt.</p>
+          <a class="info" href="#allergene-info">Zutaten &amp; Allergene</a>
+          <a class="button in-warenkorb" href="#bestaetigung" data-id="salami" data-name="Zapi! Salami" data-cent="640" data-art="abholung" aria-label="Zapi! Salami in den Warenkorb">In den Warenkorb</a>
+        </li>
+        <li class="karte">
+          <div class="bild">
+            <a class="bild-link" href="produkte/box.html" tabindex="-1" aria-hidden="true"><img src="img/zapi-box.svg" alt="Illustration: offene Kartonbox mit 4 gekühlten Zapis, Champignon und Salami, rotes Band mit Schneeflocke für gekühlten Versand" width="400" height="300"></a>
+          </div>
+          <h3><a href="produkte/box.html">Zapi! Box</a></h3>
+          <p>4 Stück gekühlt. Zu Hause aufbacken, fertig.</p>
+          <p class="preis">17,90 €</p>
+          <p class="hinweis">inkl. MwSt., zzgl. Versand</p>
+          <a class="info" href="#allergene-info">Zutaten &amp; Allergene</a>
+          <a class="button in-warenkorb" href="#bestaetigung" data-id="box" data-name="Zapi! Box" data-cent="1790" data-art="versand" aria-label="Zapi! Box in den Warenkorb">In den Warenkorb</a>
+        </li>
+        <li class="karte">
+          <div class="bild">
+            <span class="badge">Neu</span>
+            <a class="bild-link" href="produkte/party.html" tabindex="-1" aria-hidden="true"><img src="img/zapi-party.svg" alt="Illustration: großes Holzbrett mit 10 kleinen Zapis, abwechselnd Champignon und Salami, daneben ein rotes Schild mit der Zahl 10" width="400" height="300"></a>
+          </div>
+          <h3><a href="produkte/party.html">Zapi! Party</a></h3>
+          <p>10 Stück nach Wahl. Für die ganze Bande.</p>
+          <p class="preis">39,90 €</p>
+          <p class="hinweis">inkl. MwSt., zzgl. Versand</p>
+          <a class="info" href="#allergene-info">Zutaten &amp; Allergene</a>
+          <a class="button in-warenkorb" href="#bestaetigung" data-id="party" data-name="Zapi! Party" data-cent="3990" data-art="versand" aria-label="Zapi! Party in den Warenkorb">In den Warenkorb</a>
+        </li>
+      </ul>
+
+      <div class="extras">
+        <h3>Mach ihn zu deinem</h3>
+        <ul>
+          <li>Toppings je +0,80 € (Röstzwiebeln, Jalapeños, Extra-Käse)</li>
+          <li>Soßen je +0,50 € (Knoblauch, Chili, BBQ)</li>
+          <li>Ketchup inklusive, abwählbar</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. So geht's -->
+  <section id="so-gehts" class="sogehts" aria-labelledby="sogehts-titel">
+    <div class="rahmen">
+      <h2 id="sogehts-titel">So geht's</h2>
+      <ol class="schritte">
+        <li>
+          <h3>Bestellen</h3>
+          <p>Zapi! aussuchen und deine Wunschzeit wählen.</p>
+        </li>
+        <li>
+          <h3>Ping!</h3>
+          <p>Du bekommst die Push-Nachricht: „Dein Zapi! ist heiß“.</p>
+        </li>
+        <li>
+          <h3>Abholen</h3>
+          <p>Am Automaten QR-Code zeigen oder PIN eingeben. Fertig.</p>
+        </li>
+      </ol>
+      <p class="zug-hinweis">Sitzt du im Zug? Wir fragen dich 10 Minuten vor dem Backen, ob du pünktlich bist – und verschieben auf Wunsch um 15 oder 30 Minuten.</p>
+    </div>
+  </section>
+
+  <!-- 6. Standorte -->
+  <section id="standorte" aria-labelledby="standorte-titel">
+    <div class="rahmen">
+      <h2 id="standorte-titel">Standorte</h2>
+      <p>Unsere Automaten stehen da, wo du unterwegs bist.</p>
+      <div class="orte">
+        <div class="ort">
+          <h3>Bahnhöfe</h3>
+          <p>Platzhalter: Liste der Bahnhöfe folgt.</p>
+        </div>
+        <div class="ort">
+          <h3>Autobahnraststätten</h3>
+          <p>Platzhalter: Liste der Raststätten folgt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Über uns (fiktiv) -->
+  <section id="ueber-uns" aria-labelledby="ueber-titel">
+    <div class="rahmen">
+      <h2 id="ueber-titel">Über uns</h2>
+      <p>Achtung, erfunden: Zapi! ist ein fiktives Unternehmen für diesen Demo-Shop.</p>
+      <p>Bei uns gibt's keine Standard-Backmischung. Unser Teig ist handwerklich gemacht, obendrauf kommen kräftiger Bergkäse und Parmesan. Gebacken wird in unseren eigenen Automaten an Bahnhöfen und Autobahnraststätten. Du bestellst vor, wir backen pünktlich, du holst heiß ab.</p>
+    </div>
+  </section>
+
+  <!-- 7. Servicezeile -->
+  <section id="service" class="service" aria-labelledby="service-titel">
+    <div class="rahmen">
+      <h2 id="service-titel">Service</h2>
+      <ul>
+        <li>Gekühlter Versand Mo–Do</li>
+        <li><a href="#platzhalter-info">Reklamation</a></li>
+        <li><a href="#platzhalter-info">Kontakt</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- 8. Fußbereich -->
+<footer class="fuss">
+  <div class="rahmen">
+    <nav aria-label="Rechtliches">
+      <ul>
+        <li><a href="#platzhalter-info">Impressum</a></li>
+        <li><a href="#platzhalter-info">Datenschutz</a></li>
+        <li><a href="#platzhalter-info">AGB</a></li>
+        <li><a href="#platzhalter-info">Widerrufsbelehrung</a></li>
+        <li><a href="#platzhalter-info">Versand &amp; Zahlung</a></li>
+      </ul>
+    </nav>
+    <p>Zapi! ist ein erfundener Demo-Shop. Alle Produkte, Preise und Standorte sind fiktiv. Alle Illustrationen sind KI-generiert.</p>
+  </div>
+</footer>
+
+<!-- Statusmeldung für „In den Warenkorb“: steht schon beim Laden in der Seite, damit Screenreader sie ansagen (WCAG 4.1.3) -->
+<p class="wk-meldung" role="status" aria-live="polite"></p>
+
+<!-- Bestätigung „In den Warenkorb“ (nur Anzeige, keine Bezahlfunktion) -->
+<div id="bestaetigung" class="meldung" role="dialog" aria-labelledby="best-titel">
+  <div class="box">
+    <h2 id="best-titel">Lecker, gute Wahl!</h2>
+    <p>Demo: Dein Zapi! ist vorgemerkt. Es gibt keine echte Bestellung und keine Zahlung.</p>
+    <a class="button" href="#produkte">Weiter stöbern</a>
+  </div>
+</div>
+
+<div id="allergene-info" class="meldung" role="dialog" aria-labelledby="all-titel">
+  <div class="box">
+    <h2 id="all-titel">Zutaten &amp; Allergene</h2>
+    <p>Platzhalter: Zutaten, Allergene, Menge und Aufbewahrung folgen.</p>
+    <a class="button" href="#produkte">Schließen</a>
+  </div>
+</div>
+
+<div id="platzhalter-info" class="meldung" role="dialog" aria-labelledby="ph-titel">
+  <div class="box">
+    <h2 id="ph-titel">Inhalt folgt</h2>
+    <p>Platzhalter: Diese Seite ist im Demo-Shop noch nicht ausgearbeitet.</p>
+    <a class="button" href="#inhalt">Schließen</a>
+  </div>
+</div>
+
+</body>
+</html>

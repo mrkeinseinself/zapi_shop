@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zapi! Party (Demo-Shop)</title>
+<meta name="description" content="Zapi! Party: 10 gekühlte Zapis zum Aufbacken, Sorten nach Wahl (Demo-Shop, alles erfunden).">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../img/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="../img/favicon-180.png">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/app.js" defer></script>
+<script src="../js/warenkorb.js" defer></script>
+</head>
+<body>
+<a class="springen" href="#inhalt">Zum Inhalt springen</a>
+
+<p class="demo" role="note">Demo-Shop: keine echten Bestellungen</p>
+
+<header class="kopf">
+  <div class="rahmen">
+    <a class="logo" href="../index.html" aria-label="Zapi! Startseite">Zapi<span>!</span></a>
+    <a class="button warenkorb-mini" href="../warenkorb.html" aria-label="Warenkorb, 0 Artikel"><img src="../img/warenkorb.svg" alt="" width="24" height="24"> <span class="wk-zahl">0</span></a>
+    <button class="button menue-knopf" type="button" aria-expanded="false" aria-controls="menue">Menü</button>
+    <div class="menue" id="menue">
+      <nav aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="../index.html#produkte" aria-current="true">Produkte</a></li>
+          <li><a href="../index.html#so-gehts">So geht's</a></li>
+          <li><a href="../index.html#standorte">Standorte</a></li>
+          <li><a href="../index.html#ueber-uns">Über uns</a></li>
+          <li><a href="../index.html#service">Service</a></li>
+        </ul>
+      </nav>
+      <a class="button warenkorb" href="../warenkorb.html" aria-label="Warenkorb, 0 Artikel">Warenkorb (<span class="wk-zahl">0</span>)</a>
+    </div>
+  </div>
+</header>
+
+<main id="inhalt" class="produktseite">
+  <div class="rahmen">
+    <nav class="krumen" aria-label="Du bist hier">
+      <ol>
+        <li><a href="../index.html">Startseite</a></li>
+        <li><a href="../index.html#produkte">Produkte</a></li>
+        <li><a href="party.html" aria-current="page">Zapi! Party</a></li>
+      </ol>
+    </nav>
+
+    <div class="produkt-raster">
+      <figure class="zeichnung produktbild">
+        <img src="../img/zapi-party.svg" alt="Illustration: großes Holzbrett mit 10 kleinen Zapis, abwechselnd Champignon und Salami, daneben ein rotes Schild mit der Zahl 10" width="400" height="300">
+      </figure>
+
+      <div class="produkt-info">
+        <div class="info-standard">
+          <h1 id="produkt-titel">Zapi! Party</h1>
+          <p class="teaser">10 Zapis nach Wahl. Für die ganze Bande.</p>
+          <p class="kauf-preis">39,90 €</p>
+          <p class="hinweis">inkl. MwSt., zzgl. Versand · 2,25 kg (17,73 €/kg)</p>
+          <a class="button gross in-warenkorb" href="#bestaetigung" data-id="party" data-name="Zapi! Party" data-cent="3990" data-art="versand" aria-label="Zapi! Party in den Warenkorb">In den Warenkorb</a>
+          <ul class="liefer-info">
+            <li><strong>Lieferung:</strong> gekühlt in der Kühlbox, Versand Montag bis Donnerstag.</li>
+            <li><strong>Versandkosten:</strong> stehen im Warenkorb (Demo: noch offen). <a href="#platzhalter-info">Versand &amp; Zahlung</a></li>
+            <li><strong>Rückgabe:</strong> frische Lebensmittel, siehe <a href="#platzhalter-info">Widerrufsbelehrung</a>.</li>
+          </ul>
+          <ul class="info-links">
+            <li><a href="#allergene-info">Zutaten &amp; Allergene</a></li>
+            <li><a href="#daten">Beschreibung &amp; Daten</a></li>
+            <li><a href="../index.html#produkte">Alle Zapis</a></li>
+          </ul>
+          <p class="klein">Extras wie Toppings und Soßen wählst du am Automaten.</p>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div id="daten">
+    <details class="produkt-daten">
+      <summary>Beschreibung &amp; Daten</summary>
+      <p>Zehn Zapis gekühlt für deine Party. Die Sorten wählst du nach der Bestellung (Demo: Auswahl folgt). Aufbacken, auf ein Brett legen, fertig ist das Buffet.</p>
+      <dl>
+        <div><dt>Inhalt</dt><dd>10 Stück, Sorten nach Wahl</dd></div>
+        <div><dt>Gewicht</dt><dd>ca. 2,25 kg</dd></div>
+        <div><dt>Aufbewahrung</dt><dd>gekühlt bei 0 bis 7 °C, zu verbrauchen bis: siehe Packung</dd></div>
+        <div><dt>Aufbacken</dt><dd>im vorgeheizten Ofen bei 200 °C, ca. 8 bis 10 Minuten</dd></div>
+        <div><dt>Grundpreis</dt><dd>17,73 €/kg</dd></div>
+        <div><dt>Allergene</dt><dd>enthält u. a. Weizen (Gluten) und Milch; vollständig unter <a href="#allergene-info">Zutaten &amp; Allergene</a></dd></div>
+      </dl>
+      <p class="klein">Alle Angaben sind Demo-Werte und erfunden.</p>
+    </details>
+    </div>
+  </div>
+</main>
+
+<footer class="fuss">
+  <div class="rahmen">
+    <nav aria-label="Rechtliches">
+      <ul>
+        <li><a href="#platzhalter-info">Impressum</a></li>
+        <li><a href="#platzhalter-info">Datenschutz</a></li>
+        <li><a href="#platzhalter-info">AGB</a></li>
+        <li><a href="#platzhalter-info">Widerrufsbelehrung</a></li>
+        <li><a href="#platzhalter-info">Versand &amp; Zahlung</a></li>
+      </ul>
+    </nav>
+    <p>Zapi! ist ein erfundener Demo-Shop. Alle Produkte, Preise und Standorte sind fiktiv. Alle Illustrationen sind KI-generiert.</p>
+  </div>
+</footer>
+
+<!-- Statusmeldung für „In den Warenkorb“: steht schon beim Laden in der Seite, damit Screenreader sie ansagen (WCAG 4.1.3) -->
+<p class="wk-meldung" role="status" aria-live="polite"></p>
+
+<div id="platzhalter-info" class="meldung" role="dialog" aria-labelledby="ph-titel">
+  <div class="box">
+    <h2 id="ph-titel">Inhalt folgt</h2>
+    <p>Platzhalter: Diese Seite ist im Demo-Shop noch nicht ausgearbeitet.</p>
+    <a class="button" href="#inhalt">Schließen</a>
+  </div>
+</div>
+
+<div id="bestaetigung" class="meldung" role="dialog" aria-labelledby="best-titel">
+  <div class="box">
+    <h2 id="best-titel">Lecker, gute Wahl!</h2>
+    <p>Demo: Dein Zapi! Party ist vorgemerkt. Es gibt keine echte Bestellung und keine Zahlung.</p>
+    <a class="button" href="../index.html#produkte">Weiter stöbern</a>
+  </div>
+</div>
+
+<div id="allergene-info" class="meldung" role="dialog" aria-labelledby="all-titel">
+  <div class="box">
+    <h2 id="all-titel">Zutaten &amp; Allergene</h2>
+    <p>Platzhalter: Zutaten, Allergene, Menge und Aufbewahrung folgen.</p>
+    <a class="button" href="#produkt-titel">Schließen</a>
+  </div>
+</div>
+
+</body>
+</html>

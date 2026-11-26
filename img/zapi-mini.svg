@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 22">
+  <defs>
+    <linearGradient id="kruste" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9AE62"/><stop offset="1" stop-color="#7A3E12"/></linearGradient>
+    <linearGradient id="kaese" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE7A0"/><stop offset="1" stop-color="#E39A2C"/></linearGradient>
+  </defs>
+  <rect x="1" y="5" width="58" height="16" rx="8" fill="url(#kruste)"/>
+  <path d="M4 7 Q6 2 14 3 H48 Q57 2 57 8 Q56 12 52 11 Q50 15 47 11 H30 Q28 15 25 11 H10 Q6 13 4 7 Z" fill="url(#kaese)"/>
+  <ellipse cx="20" cy="6" rx="5" ry="1.8" fill="#A4521A" opacity=".45"/><ellipse cx="40" cy="7" rx="4" ry="1.5" fill="#A4521A" opacity=".45"/>
+  <circle cx="14" cy="6.5" r="3.2" fill="#B5232F"/><circle cx="31" cy="6" r="3.2" fill="#B5232F"/><circle cx="47" cy="6.5" r="3.2" fill="#B5232F"/>
+  <path d="M8 7 Q14 3 20 7 T32 7 T44 7 T54 6" stroke="#C0141F" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+</svg>

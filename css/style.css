@@ -1,0 +1,492 @@
+/* ===== Farben mit festen Rollen ===== */
+:root {
+  --rot: #C8102E;      /* Logo, Kopfbereich, Überschriften */
+  --gelb: #FFC72C;     /* nur Buttons und Handlungen */
+  --creme: #FFF8EE;    /* Hintergrund */
+  --schwarz: #222222;  /* Fließtext, Buttontext */
+  --schrift: "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui, sans-serif; /* ein Stack; Gewicht steuert die Stärke */
+}
+
+/* ===== Grundlagen (rem statt px, damit Zoom und Schriftvergrößerung greifen) ===== */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 100%; }
+body {
+  margin: 0;
+  background: var(--creme);
+  color: var(--schwarz);
+  font-family: var(--schrift);
+  font-size: 1rem;          /* 16 px */
+  line-height: 1.5;
+  text-align: left;
+}
+p, li { max-width: 80ch; }
+h1, h2, h3 { color: var(--rot); font-weight: 900; line-height: 1.2; margin: 0 0 0.5em; }
+h1 { font-size: 2rem; }     /* 32 px */
+h2 { font-size: 2rem; }     /* 32 px */
+h3 { font-size: 1.5rem; }   /* 24 px */
+small, .klein { font-size: 0.875rem; } /* 14 px */
+img, .bild { max-width: 100%; }
+
+.rahmen { max-width: 72rem; margin: 0 auto; padding: 0 1.25rem; }
+section { padding: 3rem 0; }
+
+/* Sichtbarer Tastaturfokus */
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--schwarz);
+  outline-offset: 3px;
+}
+.kopf a:focus-visible, .kopf button:focus-visible { outline-color: var(--creme); }
+
+.springen {
+  position: absolute; left: -999px; top: 0;
+  background: var(--gelb); color: var(--schwarz);
+  padding: 0.5rem 1rem; font-weight: 700; z-index: 30;
+}
+.springen:focus { left: 1rem; top: 0.5rem; }
+
+/* ===== 1. Demo-Hinweis ===== */
+.demo {
+  background: var(--schwarz); color: var(--creme);
+  text-align: center; font-size: 0.875rem;
+  padding: 0.5rem 1rem; margin: 0;
+  max-width: none; /* volle Breite, hebt die 80ch-Grenze für Absätze auf */
+}
+
+/* ===== 2. Kopfbereich ===== */
+.kopf { background: var(--rot); color: var(--creme); position: sticky; top: 0; z-index: 10; } /* bleibt beim Scrollen oben, damit Navigation und Warenkorb immer erreichbar sind */
+html { scroll-padding-top: 9rem; } /* Sprungziele landen unter dem festen Kopfbereich samt Kugeln */
+.kopf .rahmen {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 1rem 2rem; padding-top: 1rem; padding-bottom: 1rem;
+}
+.logo {
+  color: var(--creme); text-decoration: none;
+  font-size: 2rem; font-weight: 900; letter-spacing: -0.02em;
+  transform: rotate(-3deg); display: inline-block;
+}
+.logo span { color: var(--gelb); } /* Gelb auf Rot nur in großer Schrift */
+.menue { flex: 1 1 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; } /* Hülle für Navigation und Warenkorb, auf breiten Bildschirmen wie vorher */
+.kopf nav { flex: 1 1 auto; }
+.kopf ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; }
+.kopf nav a {
+  color: var(--creme); text-decoration: none;
+  padding: 0.25rem 0; border-bottom: 3px solid transparent;
+}
+.kopf nav a:hover { border-bottom-color: var(--creme); }
+
+/* ===== Buttons: Käse-Gelb, Text Fast Schwarz, dunkler Rand für 3:1 auf Creme ===== */
+.button {
+  display: inline-block;
+  background: var(--gelb); color: var(--schwarz);
+  font-family: var(--schrift); font-size: 1rem; font-weight: 900;
+  text-decoration: none; text-align: center;
+  padding: 0.75rem 1.5rem; min-height: 2.75rem;
+  border: 3px solid var(--schwarz); border-radius: 999px;
+  box-shadow: 0 4px 0 var(--schwarz);
+  cursor: pointer;
+}
+.button:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--schwarz); }
+.button.gross { font-size: 1.5rem; padding: 1rem 2rem; }
+.warenkorb { margin-left: auto; }
+
+/* ===== 3. Startbereich ===== */
+.start { background: var(--creme); }
+.start .rahmen { display: grid; gap: 2rem; }
+.start h1 { font-size: 2rem; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.02em; } /* 32 px = höchste erlaubte Stufe */
+.start h1 span { display: block; } /* je Wort eine Zeile: Wucht durch Rhythmus statt Größe */
+.start h1 span:nth-child(2) { padding-left: 1.5rem; }
+.start h1 span:nth-child(3) { padding-left: 3rem; }
+.start p {
+  font-size: 1.5rem; margin: 0 0 1.5rem;
+}
+/* Startbild Bahnhof | Raststätte als breites Band unter Titel und Button (Format 2 : 1 wirkt nur in voller Breite);
+   Ecken passend zum Rahmen im SVG (rx 18 bei 960 x 480), roter Versatzschatten wie bei den Produktkarten */
+.startbild img { border-radius: 1.875% / 3.75%; box-shadow: 6px 6px 0 var(--rot); }
+.startbild img, .bild img { display: block; width: 100%; height: auto; }
+
+/* ===== 4. Produkte ===== */
+.raster { display: grid; gap: 1.5rem; grid-template-columns: repeat(2, 1fr); list-style: none; padding: 0; margin: 0 0 2rem; }
+/* breit: 4 nebeneinander, mittel: 2 x 2, sehr schmal oder 200 % Zoom: 1 Spalte */
+@media (min-width: 64rem) { .raster { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 36rem) { .raster { grid-template-columns: 1fr; } }
+.karte {
+  background: var(--creme); border: 3px solid var(--schwarz); border-radius: 1.25rem;
+  padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;
+  box-shadow: 6px 6px 0 var(--rot);
+  position: relative; /* Bezug für den Preis-Aufkleber */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.karte h3 { margin: 0.5rem 0 0; }
+/* 1. Hitze: Karte hebt sich bei Maus oder Tastaturfokus, über dem Zapi steigt mehr Dampf auf */
+.karte:hover, .karte:focus-within { transform: translateY(-6px); box-shadow: 8px 12px 0 var(--rot); }
+.bild::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: url("../img/dampf.svg") center / 100% 100% no-repeat;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.8s ease;
+}
+.karte:hover .bild::after, .karte:focus-within .bild::after { opacity: 1; transform: translateY(0); }
+/* 6. Etikett „Bestseller“/„Neu“: Creme mit rotem Rand, Gelb bleibt den Buttons vorbehalten.
+   Rot auf Creme 5,6 : 1 */
+.badge {
+  position: absolute; bottom: 0.5rem; left: 0.5rem; z-index: 1; /* unten links, damit der Preis-Aufkleber oben rechts frei bleibt */
+  background: var(--creme); color: var(--rot); border: 2px solid var(--rot); border-radius: 999px;
+  font-size: 0.875rem; font-weight: 900; line-height: 1.5; text-transform: uppercase; letter-spacing: 0.04em;
+  padding: 0 0.625rem;
+}
+.bild {
+  position: relative;
+  border-radius: 0.75rem; overflow: hidden;
+  background: var(--creme);
+  border: 3px solid var(--schwarz);
+}
+/* 2. Preis als schräger Aufkleber auf dem Bild: Creme auf Ketchup-Rot 5,6 : 1 */
+.preis {
+  position: absolute; top: 2rem; right: 1.5rem; z-index: 2;
+  font-size: 1.5rem; font-weight: 900; line-height: 1.5; margin: 0;
+  background: var(--rot); color: var(--creme);
+  padding: 0.125rem 0.75rem; border: 3px solid var(--schwarz); border-radius: 0.5rem;
+  transform: rotate(-6deg); box-shadow: 3px 3px 0 var(--schwarz);
+}
+.hinweis { font-size: 0.875rem; margin: 0; }
+.karte a.info { color: var(--schwarz); font-size: 0.875rem; }
+.karte .button { margin-top: auto; padding-left: 0.5rem; padding-right: 0.5rem; white-space: nowrap; } /* Text bleibt einzeilig */
+/* Zeilen der Karten aneinander ausrichten: jede Karte übernimmt 6 Rasterzeilen
+   (Bild, Titel, Beschreibung, Preishinweis, Link, Button; der Preis klebt als Aufkleber auf dem Bild).
+   Einspaltig und in Browsern ohne Subgrid bleibt es beim Flex-Stapel oben. */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 36.01rem) {
+    .karte {
+      display: grid;
+      grid-row: span 6;
+      grid-template-rows: subgrid;
+      row-gap: 0.5rem;
+    }
+    .karte .button { margin-top: 0; align-self: end; }
+  }
+}
+.extras { border-left: 6px solid var(--rot); padding-left: 1rem; }
+.extras h3 { font-size: 1.5rem; }
+.extras ul { margin: 0; padding-left: 1.25rem; }
+
+/* ===== 5. So geht's ===== */
+.sogehts { background: var(--rot); color: var(--creme); }
+.sogehts h2 { color: var(--creme); }
+.schritte {
+  list-style: none; padding: 0; margin: 0; position: relative;
+  display: grid; gap: 1.5rem; grid-template-columns: 1fr; counter-reset: schritt;
+}
+/* Route zum Automaten: gestrichelte Linie durch große Nummern-Kreise. Handy: senkrecht links */
+.schritte::before {
+  content: ""; position: absolute; left: calc(2rem - 2px); top: 1rem; bottom: 1rem;
+  border-left: 4px dashed var(--creme);
+}
+.schritte li {
+  counter-increment: schritt; background: var(--creme); color: var(--schwarz);
+  border-radius: 1.25rem; padding: 1.25rem; position: relative;
+  margin-left: 4.75rem;
+}
+.schritte li::before {
+  content: counter(schritt); display: grid; place-items: center;
+  position: absolute; left: -4.75rem; top: 0.75rem;
+  width: 4rem; height: 4rem; border-radius: 50%;
+  background: var(--rot); color: var(--creme); border: 4px solid var(--creme);
+  font-size: 2rem; font-weight: 900; line-height: 1;
+}
+/* Breit: waagerechte Route über den drei Schritten */
+@media (min-width: 48rem) {
+  .schritte { grid-template-columns: repeat(3, 1fr); padding-top: 3.25rem; }
+  .schritte::before { left: 2rem; right: 2rem; top: calc(2rem - 2px); bottom: auto; border-left: 0; border-top: 4px dashed var(--creme); }
+  .schritte li { margin-left: 0; }
+  .schritte li::before { left: 1.25rem; top: -3.25rem; }
+}
+.schritte h3 { font-size: 1.5rem; }
+.schritte p { margin: 0; }
+/* Hervorgehobener Hinweis unter den Schritten: Fast Schwarz auf Rot, Text Creme (15,09 : 1) */
+.zug-hinweis {
+  margin: 1.5rem 0 0; padding: 1rem 1.25rem;
+  background: var(--schwarz); color: var(--creme);
+  border-left: 8px solid var(--creme); border-radius: 0.75rem;
+  font-size: 1.5rem;
+}
+
+/* ===== 6. Standorte ===== */
+.orte { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.ort { border: 3px dashed var(--rot); border-radius: 1.25rem; padding: 1.25rem; }
+.ort p { margin: 0; }
+
+/* ===== 7. Servicezeile ===== */
+.service { padding: 1.5rem 0; }
+.service h2 { font-size: 1.5rem; }
+.service ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 2.5rem; }
+.service a { color: var(--schwarz); }
+
+/* ===== 8. Fußbereich ===== */
+.fuss { background: var(--schwarz); color: var(--creme); padding: 2rem 0; font-size: 0.875rem; }
+.fuss ul { list-style: none; margin: 0 0 1rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+.fuss a { color: var(--creme); }
+.fuss a:focus-visible { outline-color: var(--creme); }
+.fuss p { margin: 0; }
+
+/* ===== Bestätigung und Platzhalter ohne JavaScript (:target) ===== */
+.meldung { display: none; }
+.meldung:target {
+  display: grid; place-items: center;
+  position: fixed; inset: 0; z-index: 20;
+  background: rgba(34,34,34,.7); padding: 1rem;
+}
+.meldung .box {
+  background: var(--creme); color: var(--schwarz);
+  border: 3px solid var(--schwarz); border-radius: 1.25rem;
+  padding: 1.5rem; max-width: 30rem; box-shadow: 8px 8px 0 var(--rot);
+}
+.meldung h2 { font-size: 1.5rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .button:hover { transform: none; }
+  .karte, .bild::after { transition: none; }
+  .karte:hover, .karte:focus-within, .karte:hover .bild::after, .karte:focus-within .bild::after { transform: none; } /* Dampf erscheint, ohne zu steigen */
+}
+.deko-pause .karte, .deko-pause .bild::after { transition: none; }
+.deko-pause .karte:hover, .deko-pause .karte:focus-within,
+.deko-pause .karte:hover .bild::after, .deko-pause .karte:focus-within .bild::after { transform: none; }
+
+/* ===== Handy-Menü (nur mit JavaScript; ohne JS bleibt die Navigation offen sichtbar) ===== */
+.menue-knopf { display: none; padding: 0.5rem 1rem; }
+.warenkorb-mini { display: none; padding: 0.375rem 0.875rem; }
+.warenkorb-mini img { width: 1.5rem; height: 1.5rem; vertical-align: middle; }
+.menue-knopf::after { content: " ▾"; }
+.menue-knopf[aria-expanded="true"]::after { content: " ▴"; }
+@media (max-width: 47.99rem) {
+  .js .warenkorb-mini { display: inline-block; margin-left: auto; } /* kleiner Warenkorb bleibt immer sichtbar */
+  .js .menue-knopf { display: inline-block; }                       /* oben rechts */
+  .js .kopf .rahmen { column-gap: 0.75rem; }
+  .js .menue { display: none; flex-basis: 100%; }                   /* zugeklappt */
+  .js .kopf.offen .menue {                                          /* aufgeklappt, volle Breite */
+    display: block; max-height: calc(100vh - 6rem); overflow-y: auto; /* bei großer Schrift im festen Kopf scrollbar */
+  }
+  .js .kopf ul { flex-direction: column; gap: 0; }
+  .js .kopf nav a {
+    display: block; padding: 0.75rem 0; min-height: 2.75rem;        /* große Tippfläche */
+    border-bottom: 1px solid var(--creme);
+  }
+  .js .menue .warenkorb { display: none; } /* ersetzt durch den kleinen Warenkorb oben */
+}
+
+/* ===== Weihnachtsoutfit (24.11.–28.12., Klasse .weihnachten setzt js/app.js) =====
+   Reine Deko: aria-hidden, nicht anklickbar, liegt unter den Meldungen (z-index 20). */
+.kugeln {
+  position: absolute; left: 0; right: 0; top: 100%; height: 3.5rem; z-index: 5;
+  pointer-events: none;
+  overflow-x: clip; /* Mini-Zapis am rechten Rand erzeugen keine Scrollleiste; nach unten fallen dürfen sie weiter */
+  background: url("../img/kugeln.svg") space no-repeat left top; /* nur ganze Kugeln, keine angeschnittenen am Rand */
+}
+.schnee { position: fixed; inset: 0; z-index: 15; pointer-events: none; overflow: hidden; }
+.flocke {
+  position: absolute; top: -1rem; left: var(--x);
+  width: var(--s); height: var(--s); border-radius: 50%;
+  background: #FFFFFF; box-shadow: 0 0 0 1px rgba(34, 34, 34, 0.25); /* feiner Rand, damit Schnee auch auf Creme sichtbar ist */
+  animation: rieseln var(--t) linear var(--d) infinite;
+}
+@keyframes rieseln {
+  from { transform: translate(0, 0); }
+  50%  { transform: translate(1.5rem, 55vh); }
+  to   { transform: translate(-0.5rem, 110vh); }
+}
+.baum {
+  position: fixed; left: 0.5rem; bottom: 0; z-index: 15; pointer-events: none;
+  width: 6rem;
+}
+/* Handy: kleiner Baum nur im Fußbereich, verdeckt keinen Inhalt */
+.fuss { position: relative; }
+@media (max-width: 47.99rem) {
+  .baum { position: absolute; left: 1.25rem; bottom: 0.75rem; width: 3rem; }
+  .weihnachten .fuss { padding-bottom: 5.5rem; }
+}
+.baum img { display: block; width: 100%; height: auto; }
+
+/* Weihnachtsmann mit Schlitten: oben nach rechts, unten nach links, unter dem Kopfbereich (z-index 9 < 10) */
+.deko-ebene { position: fixed; inset: 0; z-index: 9; overflow: hidden; pointer-events: none; } /* schneidet ab, was außerhalb des Bildes ist */
+.schlitten {
+  position: absolute; left: 0; top: 0; width: 9rem;
+  transform: translateX(-200%); /* startet außerhalb des Bildes, bis JS die Position setzt */
+  pointer-events: none; will-change: transform;
+}
+@media (max-width: 47.99rem) { .schlitten { width: 6rem; } }
+.schlitten > img, .schlitten > svg { display: block; width: 100%; height: auto; }
+/* Kufenspuren: über dem Inhalt, unter Schlitten (9) und Kopfbereich (10); JS zeichnet nur auf Creme-Flächen */
+.spuren { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 8; pointer-events: none; } /* ohne mix-blend-mode: spart das Neuzeichnen der ganzen Seite in jedem Bild */
+/* Bei „Bewegung reduzieren“: steht still unten rechts im Fußbereich */
+.schlitten-still { position: absolute; left: auto; top: auto; right: 1.25rem; bottom: 0.75rem; width: 7rem; }
+.mini-zapi { position: absolute; width: 36px; height: 13px; pointer-events: none; will-change: transform; }
+.fall-ebene { position: fixed; inset: 0; z-index: 11; overflow: hidden; pointer-events: none; contain: strict; } /* fallende Mini-Zapis: eigene Ebene, beschnitten am Bildrand */
+/* Knopf „Deko anhalten“ (WCAG 2.2.2: Bewegung über 5 Sekunden muss anhaltbar sein) */
+.deko-knopf {
+  position: fixed; right: 0.75rem; bottom: 0.75rem; z-index: 16;
+  font-size: 0.875rem; padding: 0.5rem 1rem; min-height: 2.75rem;
+}
+.deko-pause .flocke, .deko-pause .schlitten * { animation-play-state: paused !important; }
+.weihnachten .fuss { padding-bottom: 5.5rem; } /* Platz, damit der Knopf unten rechts keine Fußbereich-Links verdeckt */
+
+@media (prefers-reduced-motion: reduce) {
+  .schnee { display: none; } /* kein Schneetreiben bei reduzierter Bewegung */
+  .weihnachten .fuss { padding-bottom: 6rem; } /* Platz für den stehenden Schlitten */
+}
+
+/* ===== Produktkarten der Startseite: Titel und Bild führen zur Produktseite ===== */
+.karte h3 a { color: inherit; text-decoration: none; }
+.karte h3 a:hover, .karte h3 a:focus-visible { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
+.bild-link { display: block; }
+
+/* ===== Produktseite (produkte/…) ===== */
+/* Brotkrumen: Weg zurück zur Startseite */
+.krumen ol { list-style: none; margin: 0; padding: 1rem 0 0; display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; font-size: 0.875rem; }
+.krumen li + li::before { content: "›"; content: "›" / ""; margin-right: 0.5rem; } /* Trennzeichen wird nicht vorgelesen */
+.krumen a { color: var(--schwarz); }
+.krumen a[aria-current="page"] { font-weight: 700; text-decoration: none; }
+/* Shop-Aufbau wie üblich: links das Bild, rechts Name, Preis und Warenkorb – alles ohne Scrollen sichtbar */
+.produktseite { padding-bottom: 2rem; }
+.produkt-raster { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; margin-top: 0.5rem; }
+@media (min-width: 56rem) {
+  .produkt-raster { grid-template-columns: minmax(0, 1fr) minmax(18rem, 25rem); gap: 2.5rem; }
+}
+/* Zeichnung so groß, wie die Fensterhöhe erlaubt (Seitenverhältnis 6 : 5) */
+.zeichnung { margin: 0 auto; width: 100%; max-width: min(46rem, calc((100vh - 13.5rem) * 1.2)); min-width: 0; }
+.weihnachten .zeichnung { max-width: min(46rem, calc((100vh - 16rem) * 1.2)); }
+@media (max-width: 55.99rem) { .zeichnung, .weihnachten .zeichnung { max-width: 40rem; } }
+
+/* Info-Spalte */
+.produkt-info { position: relative; }
+.info-standard h1 { text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 0.25rem; }
+.teaser { font-size: 1.5rem; line-height: 1.3; margin: 0 0 1rem; }
+.kauf-preis { font-size: 2rem; font-weight: 900; line-height: 1.2; margin: 0; }
+.info-standard .hinweis { margin: 0 0 1rem; }
+.info-standard .button.gross { display: block; width: 100%; }
+.info-links { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; font-size: 0.875rem; }
+.info-links a { color: var(--schwarz); }
+.info-standard .klein { margin: 0.75rem 0 0; }
+.tipp { margin: 1rem 0 0; padding-left: 0.75rem; border-left: 4px solid var(--rot); font-weight: 700; }
+.fiktiv { margin-top: 0.25rem; }
+
+/* Zutatenliste nur für Screenreader; sichtbar steht alles in den Fenstern */
+.zutaten { list-style: none; margin: 0; padding: 0; }
+.unsichtbar { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.flaeche { position: relative; }
+.flaeche > img { display: block; width: 100%; height: auto; }
+.linien { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+/* Verbindungslinie Medaillon → Produkt: bei Mouseover/Fokus kräftig in Ketchup-Rot */
+.linien path { fill: none; stroke: var(--rot); stroke-width: 10; stroke-linecap: round; opacity: 0; transition: opacity 0.15s ease; }
+.linien path.aktiv { opacity: 1; filter: drop-shadow(3px 3px 0 var(--schwarz)); } /* versetzter dunkler Schatten wie bei Karten und Buttons */
+
+.medaillon, .zutat-info { display: none; }
+.js-zutaten .medaillon {
+  display: block; position: absolute; left: 0; top: 0; z-index: 2;
+  width: var(--b); aspect-ratio: 1; margin-left: var(--mx); margin-top: var(--my); /* Prozent-Ränder beziehen sich auf die Breite */
+  border: 0; border-radius: 50%; background: transparent; padding: 0; cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+/* Wie die Produktkarten der Startseite beim Darüberfahren: dunkler Rand, größerer versetzter roter Schatten */
+.js-zutaten .medaillon:hover, .js-zutaten .medaillon[aria-expanded="true"] { box-shadow: 0 0 0 4px var(--schwarz), 8px 10px 0 4px var(--rot); }
+.js-zutaten .medaillon:focus-visible { outline: 3px solid var(--schwarz); outline-offset: 6px; }
+
+/* Fenster je Zutat: Bild, Name, Kurztext, Herkunft; Rahmen und Schatten wie die Produktkarten.
+   Breit legt es sich über die Info-Spalte (nie über die Zeichnung), schmal klappt es unter den Infos auf. */
+.js-zutaten .zutat-info.offen {
+  display: block; position: relative; margin-top: 1rem;
+  background: var(--creme); border: 3px solid var(--schwarz); border-radius: 1.25rem; overflow: hidden;
+  box-shadow: 6px 6px 0 var(--rot);
+}
+/* Schmal: Fenster steht direkt unter der Zeichnung, vor Name und Preis */
+@media (max-width: 55.99rem) {
+  .produkt-info { display: flex; flex-direction: column; }
+  .js-zutaten .zutat-info.offen { order: -1; margin: 0 0 1.5rem; }
+}
+@media (min-width: 56rem) {
+  .js-zutaten .zutat-info.offen { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); margin: 0; z-index: 3; pointer-events: none; }
+  .js-zutaten .zutat-info.offen.fest { pointer-events: auto; }
+}
+.zutat-info img { display: block; width: 100%; height: auto; border-bottom: 3px solid var(--schwarz); }
+.info-text { padding: 0.75rem 1rem 1rem; }
+.info-text h3 { display: flex; align-items: center; gap: 0.5rem; font-size: 1.5rem; line-height: 1.2; margin: 0 0 0.25rem; }
+.info-text .nr {
+  flex: none; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%;
+  background: var(--rot); color: var(--creme); font-size: 1rem; border: 2px solid var(--schwarz); /* Creme auf Rot 5,6 : 1 */
+}
+.info-text p { margin: 0.25rem 0 0; }
+.info-text .herkunft { font-size: 0.875rem; }
+.zutat-info .zu { display: none; }
+.js-zutaten .zutat-info.fest .zu {
+  display: grid; place-items: center; position: absolute; top: 0.5rem; right: 0.5rem;
+  width: 2.75rem; height: 2.75rem; border-radius: 50%;
+  font-family: var(--schrift); font-size: 1.5rem; font-weight: 900; line-height: 1;
+  color: var(--schwarz); background: var(--gelb); border: 3px solid var(--schwarz); cursor: pointer;
+}
+
+.weihnachten .krumen ol { padding-top: 4rem; } /* Brotkrumen nicht unter den Kugeln verstecken */
+
+/* ===== Aktiver Menüpunkt (Folie Tag 43: „aktuelle Position zeigen“) ===== */
+.kopf nav a[aria-current] { border-bottom-color: var(--creme); font-weight: 900; }
+.button[aria-current="page"] { box-shadow: 0 0 0 3px var(--creme), 0 4px 0 var(--schwarz); } /* Warenkorb auf der Warenkorb-Seite */
+
+/* ===== Tippflächen mindestens 24 px hoch (WCAG 2.5.8), Fußlinks 44 px ===== */
+.krumen a, .info-links a, .karte a.info, .service a, .liefer-info a, .produkt-daten a { display: inline-block; min-height: 1.5rem; padding: 0.125rem 0; }
+.fuss nav a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+.krumen ol { row-gap: 0.25rem; }
+
+/* ===== Produktseite: Abholung/Lieferung & Rückgabe, Beschreibung & Daten ===== */
+.liefer-info { list-style: none; margin: 1rem 0 0; padding: 0.5rem 0 0.5rem 0.75rem; border-left: 4px solid var(--rot); font-size: 0.875rem; }
+.liefer-info li + li { margin-top: 0.25rem; }
+.liefer-info a { color: var(--schwarz); }
+.produkt-daten { margin-top: 2rem; max-width: 46rem; border: 3px solid var(--schwarz); border-radius: 1.25rem; background: var(--creme); box-shadow: 6px 6px 0 var(--rot); }
+.produkt-daten summary { cursor: pointer; padding: 0.75rem 1.25rem; min-height: 2.75rem; font-size: 1.5rem; font-weight: 900; color: var(--rot); }
+.produkt-daten summary:focus-visible { outline: 3px solid var(--schwarz); outline-offset: 3px; }
+.produkt-daten > :not(summary) { margin-left: 1.25rem; margin-right: 1.25rem; }
+.produkt-daten dl { margin-top: 0; margin-bottom: 0; }
+.produkt-daten dl > div { display: grid; grid-template-columns: minmax(7rem, 1fr) 3fr; gap: 0.25rem 1rem; padding: 0.375rem 0; border-top: 1px solid rgba(34, 34, 34, 0.2); }
+.produkt-daten dt { font-weight: 700; }
+.produkt-daten dd { margin: 0; }
+.produkt-daten .klein { margin-bottom: 1rem; }
+.produkt-daten a { color: var(--schwarz); }
+@media (max-width: 30rem) { .produkt-daten dl > div { grid-template-columns: 1fr; } }
+/* Box und Party: Produktbild statt Zeichnung, im Stil der Karten */
+.produktbild img { display: block; width: 100%; height: auto; border: 3px solid var(--schwarz); border-radius: 1.25rem; box-shadow: 6px 6px 0 var(--rot); background: var(--creme); }
+
+/* ===== Warenkorb: Meldung nach dem Hinzufügen (sichtbar und als Statusmeldung angesagt) ===== */
+.wk-meldung {
+  position: fixed; left: 50%; bottom: 4.5rem; z-index: 18; transform: translate(-50%, 1rem);
+  max-width: min(28rem, calc(100vw - 2rem)); margin: 0; padding: 0.75rem 1.25rem;
+  background: var(--schwarz); color: var(--creme); border: 3px solid var(--creme); border-radius: 1rem; box-shadow: 4px 4px 0 var(--rot);
+  font-weight: 700; opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.wk-meldung:empty { padding: 0; border: 0; }
+.wk-meldung.sichtbar { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) { .wk-meldung { transition: none; } }
+
+/* ===== Warenkorb-Seite ===== */
+.warenkorb-seite { padding-bottom: 3rem; }
+.warenkorb-seite h1 { margin-top: 1rem; }
+.wk-liste { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; gap: 1rem; max-width: 46rem; }
+.wk-zeile {
+  display: grid; grid-template-columns: 1fr auto auto auto; gap: 0.75rem 1.25rem; align-items: center;
+  background: var(--creme); border: 3px solid var(--schwarz); border-radius: 1.25rem; padding: 1rem 1.25rem; box-shadow: 6px 6px 0 var(--rot);
+}
+.wk-name a { color: var(--rot); font-size: 1.5rem; font-weight: 900; text-decoration: none; display: inline-block; min-height: 1.5rem; }
+.wk-name a:hover, .wk-name a:focus-visible { text-decoration: underline; }
+.wk-name .klein { display: block; }
+.wk-menge { display: flex; align-items: center; gap: 0.5rem; }
+.wk-knopf {
+  width: 2.75rem; height: 2.75rem; border-radius: 50%; border: 3px solid var(--schwarz); background: var(--gelb); color: var(--schwarz);
+  font-family: var(--schrift); font-size: 1.5rem; font-weight: 900; line-height: 1; cursor: pointer;
+}
+.wk-knopf:disabled { background: var(--creme); color: #6B6B6B; cursor: not-allowed; } /* deaktiviert: Grau auf Creme 5,1 : 1 */
+.wk-zahl-zeile { min-width: 2ch; text-align: center; font-size: 1.5rem; font-weight: 900; }
+.wk-zeilensumme { margin: 0; font-size: 1.5rem; font-weight: 900; white-space: nowrap; }
+.wk-entfernen { background: none; border: 0; padding: 0.5rem 0; min-height: 2.75rem; color: var(--schwarz); text-decoration: underline; font-family: var(--schrift); font-size: 1rem; cursor: pointer; }
+.wk-knopf:focus-visible, .wk-entfernen:focus-visible { outline: 3px solid var(--schwarz); outline-offset: 3px; }
+@media (max-width: 40rem) { .wk-zeile { grid-template-columns: 1fr auto; } .wk-name { grid-column: 1 / -1; } }
+.wk-summe { max-width: 46rem; border-top: 3px solid var(--schwarz); padding-top: 1rem; }
+.wk-summe p:first-child { display: flex; justify-content: space-between; font-size: 2rem; font-weight: 900; margin: 0; }
+.wk-summe .hinweis { margin: 0 0 1rem; }
+.wk-summe a { color: var(--schwarz); display: inline-block; min-height: 1.5rem; }
+.wk-leer { padding: 2rem 0; }

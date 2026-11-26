@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dein Warenkorb (Demo-Shop)</title>
+<meta name="description" content="Warenkorb des Zapi! Demo-Shops. Keine echten Bestellungen, keine Zahlung.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="img/favicon-180.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/app.js" defer></script>
+<script src="js/warenkorb.js" defer></script>
+</head>
+<body>
+<a class="springen" href="#inhalt">Zum Inhalt springen</a>
+
+<p class="demo" role="note">Demo-Shop: keine echten Bestellungen</p>
+
+<header class="kopf">
+  <div class="rahmen">
+    <a class="logo" href="index.html" aria-label="Zapi! Startseite">Zapi<span>!</span></a>
+    <a class="button warenkorb-mini" href="warenkorb.html" aria-label="Warenkorb, 0 Artikel" aria-current="page"><img src="img/warenkorb.svg" alt="" width="24" height="24"> <span class="wk-zahl">0</span></a>
+    <button class="button menue-knopf" type="button" aria-expanded="false" aria-controls="menue">Menü</button>
+    <div class="menue" id="menue">
+      <nav aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="index.html#produkte">Produkte</a></li>
+          <li><a href="index.html#so-gehts">So geht's</a></li>
+          <li><a href="index.html#standorte">Standorte</a></li>
+          <li><a href="index.html#ueber-uns">Über uns</a></li>
+          <li><a href="index.html#service">Service</a></li>
+        </ul>
+      </nav>
+      <a class="button warenkorb" href="warenkorb.html" aria-label="Warenkorb, 0 Artikel" aria-current="page">Warenkorb (<span class="wk-zahl">0</span>)</a>
+    </div>
+  </div>
+</header>
+
+<main id="inhalt" class="warenkorb-seite">
+  <div class="rahmen">
+    <nav class="krumen" aria-label="Du bist hier">
+      <ol>
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="warenkorb.html" aria-current="page">Warenkorb</a></li>
+      </ol>
+    </nav>
+
+    <h1>Dein Warenkorb</h1>
+
+    <!-- Wird von js/warenkorb.js aus dem lokalen Speicher gefüllt -->
+    <div class="wk-inhalt" aria-live="polite" aria-busy="true">
+      <noscript><p>Der Warenkorb braucht JavaScript.</p></noscript>
+    </div>
+
+    <p class="klein">Demo-Shop: keine echte Bestellung, keine Zahlung, keine Kundendaten. Gespeichert werden nur die Artikel, und nur in diesem Browser.</p>
+  </div>
+</main>
+
+<footer class="fuss">
+  <div class="rahmen">
+    <nav aria-label="Rechtliches">
+      <ul>
+        <li><a href="#platzhalter-info">Impressum</a></li>
+        <li><a href="#platzhalter-info">Datenschutz</a></li>
+        <li><a href="#platzhalter-info">AGB</a></li>
+        <li><a href="#platzhalter-info">Widerrufsbelehrung</a></li>
+        <li><a href="#platzhalter-info">Versand &amp; Zahlung</a></li>
+      </ul>
+    </nav>
+    <p>Zapi! ist ein erfundener Demo-Shop. Alle Produkte, Preise und Standorte sind fiktiv. Alle Illustrationen sind KI-generiert.</p>
+  </div>
+</footer>
+
+<!-- Statusmeldung für „In den Warenkorb“: steht schon beim Laden in der Seite, damit Screenreader sie ansagen (WCAG 4.1.3) -->
+<p class="wk-meldung" role="status" aria-live="polite"></p>
+
+<div id="platzhalter-info" class="meldung" role="dialog" aria-labelledby="ph-titel">
+  <div class="box">
+    <h2 id="ph-titel">Inhalt folgt</h2>
+    <p>Platzhalter: Diese Seite ist im Demo-Shop noch nicht ausgearbeitet.</p>
+    <a class="button" href="#inhalt">Schließen</a>
+  </div>
+</div>
+
+<div id="bestaetigung" class="meldung" role="dialog" aria-labelledby="best-titel" tabindex="-1">
+  <div class="box">
+    <h2 id="best-titel">Danke! Demo-Bestellung angekommen.</h2>
+    <p>Das war nur eine Demo: Es gibt keine echte Bestellung und keine Zahlung. Dein Warenkorb ist jetzt leer.</p>
+    <a class="button" href="index.html#produkte">Zurück zu den Zapis</a>
+  </div>
+</div>
+
+</body>
+</html>

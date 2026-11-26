@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zapi! Salami (Demo-Shop)</title>
+<meta name="description" content="Zapi! Salami: überbackenes halbes Baguette mit Rindersalami, Bergkäse, Parmesan und Schnittlauch (Demo-Shop, alles erfunden).">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../img/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="../img/favicon-180.png">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/app.js" defer></script>
+<script src="../js/warenkorb.js" defer></script>
+<script src="../js/produkt.js" defer></script>
+</head>
+<body>
+<a class="springen" href="#inhalt">Zum Inhalt springen</a>
+
+<p class="demo" role="note">Demo-Shop: keine echten Bestellungen</p>
+
+<header class="kopf">
+  <div class="rahmen">
+    <a class="logo" href="../index.html" aria-label="Zapi! Startseite">Zapi<span>!</span></a>
+    <a class="button warenkorb-mini" href="../warenkorb.html" aria-label="Warenkorb, 0 Artikel"><img src="../img/warenkorb.svg" alt="" width="24" height="24"> <span class="wk-zahl">0</span></a>
+    <button class="button menue-knopf" type="button" aria-expanded="false" aria-controls="menue">Menü</button>
+    <div class="menue" id="menue">
+      <nav aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="../index.html#produkte" aria-current="true">Produkte</a></li>
+          <li><a href="../index.html#so-gehts">So geht's</a></li>
+          <li><a href="../index.html#standorte">Standorte</a></li>
+          <li><a href="../index.html#ueber-uns">Über uns</a></li>
+          <li><a href="../index.html#service">Service</a></li>
+        </ul>
+      </nav>
+      <a class="button warenkorb" href="../warenkorb.html" aria-label="Warenkorb, 0 Artikel">Warenkorb (<span class="wk-zahl">0</span>)</a>
+    </div>
+  </div>
+</header>
+
+<main id="inhalt" class="produktseite">
+  <div class="rahmen">
+    <nav class="krumen" aria-label="Du bist hier">
+      <ol>
+        <li><a href="../index.html">Startseite</a></li>
+        <li><a href="../index.html#produkte">Produkte</a></li>
+        <li><a href="salami.html" aria-current="page">Zapi! Salami</a></li>
+      </ol>
+    </nav>
+
+    <div class="produkt-raster">
+      <figure class="zeichnung">
+        <div class="flaeche">
+          <img src="../img/produkte/explosion-salami.svg" alt="Zeichnung im Comic-Stil: In der Mitte der fertige Zapi! Salami, ein halbes Baguette mit geschmolzenem Käse, runden Salamischeiben und Schnittlauch, dampfend vor sonnengelbem Strahlenkranz. Ringsum im Kreis fünf runde Bilder seiner Zutaten, mit gestrichelten Linien verbunden, im Uhrzeigersinn von oben: 1 Schnittlauch-Bund, 2 Salami-Stange mit Scheiben, 3 Stück Parmesan mit Spänen, 4 Stück Bergkäse, 5 Weizenähren." width="720" height="600">
+          <svg class="linien" viewBox="0 0 720 600" aria-hidden="true" focusable="false"><path id="linie-schnittlauch" d="M360 220 L360 148"/><path id="linie-salami" d="M505.9 262.7 L560.4 248.7"/><path id="linie-parmesan" d="M427.4 373 L478.3 428.2"/><path id="linie-bergkaese" d="M292.6 373 L241.7 428.2"/><path id="linie-weizen" d="M214.1 262.7 L159.6 248.7"/></svg>
+          <button class="medaillon" type="button" id="knopf-schnittlauch" style="--mx: 41.7%; --my: 2.5%; --b: 16.7%" aria-expanded="false" aria-controls="info-schnittlauch"><span class="unsichtbar">Zutat 1: Schnittlauch, mehr zeigen</span></button>
+          <button class="medaillon" type="button" id="knopf-salami" style="--mx: 78.9%; --my: 23.8%; --b: 16.7%" aria-expanded="false" aria-controls="info-salami"><span class="unsichtbar">Zutat 2: Salami vom Weiderind, mehr zeigen</span></button>
+          <button class="medaillon" type="button" id="knopf-parmesan" style="--mx: 64.7%; --my: 58.3%; --b: 16.7%" aria-expanded="false" aria-controls="info-parmesan"><span class="unsichtbar">Zutat 3: Parmesan, mehr zeigen</span></button>
+          <button class="medaillon" type="button" id="knopf-bergkaese" style="--mx: 18.6%; --my: 58.3%; --b: 16.7%" aria-expanded="false" aria-controls="info-bergkaese"><span class="unsichtbar">Zutat 4: Bergkäse, mehr zeigen</span></button>
+          <button class="medaillon" type="button" id="knopf-weizen" style="--mx: 4.4%; --my: 23.8%; --b: 16.7%" aria-expanded="false" aria-controls="info-weizen"><span class="unsichtbar">Zutat 5: Baguette aus Weizen, mehr zeigen</span></button>
+        </div>
+      </figure>
+
+      <div class="produkt-info">
+        <div class="info-standard">
+          <h1 id="produkt-titel">Zapi! Salami</h1>
+          <p class="teaser">Kräftige Rindersalami, doppelt Käse, richtig heiß.</p>
+          <p class="kauf-preis">6,40 €</p>
+          <p class="hinweis">Abholung am Automaten, inkl. MwSt. · 230 g (27,83 €/kg)</p>
+          <a class="button gross in-warenkorb" href="#bestaetigung" data-id="salami" data-name="Zapi! Salami" data-cent="640" data-art="abholung" aria-label="Zapi! Salami in den Warenkorb">In den Warenkorb</a>
+          <ul class="liefer-info">
+            <li><strong>Abholung:</strong> am Automaten zu deiner Wunschzeit, mit QR-Code oder PIN. Keine Versandkosten.</li>
+            <li><strong>Nicht abgeholt?</strong> Dann verfällt der Betrag. Ausnahme: Zugverspätung.</li>
+            <li><strong>Rückgabe:</strong> frische Lebensmittel, siehe <a href="#platzhalter-info">Widerrufsbelehrung</a>.</li>
+          </ul>
+          <ul class="info-links">
+            <li><a href="#allergene-info">Zutaten &amp; Allergene</a></li>
+            <li><a href="#daten">Beschreibung &amp; Daten</a></li>
+            <li><a href="../index.html#produkte">Alle Zapis</a></li>
+          </ul>
+          <p class="tipp">Was steckt drin? Fahr über eine Zutat im Bild oder tipp sie an.</p>
+        </div>
+        <h2 class="unsichtbar">Was steckt drin?</h2>
+        <ol class="zutaten unsichtbar">
+          <li class="zutat">
+            <h3 class="zutat-name"><span class="nr" aria-hidden="true">1</span> Schnittlauch</h3>
+            <p>Frisch geschnitten, grün und mild. Der Frischekick obendrauf.</p>
+            <p class="herkunft"><strong>Schnittlauch aus dem Kräutergarten Morgentau:</strong> Gezogen in sonnigen Beeten, geschnitten kurz vor dem Einsatz. Ein bisschen Grün, ganz viel Frische.</p>
+          </li>
+          <li class="zutat">
+            <h3 class="zutat-name"><span class="nr" aria-hidden="true">2</span> Salami vom Weiderind</h3>
+            <p>Aus Rindfleisch, luftgetrocknet, fein gewürzt. Wird im Ofen schön knusprig am Rand.</p>
+            <p class="herkunft"><strong>Rindersalami vom Weidehof Eichenwiese:</strong> Die Rinder stehen das ganze Jahr auf weiten Weiden. Das Fleisch ist fein marmoriert, gewürzt wird nach Hofrezept und getrocknet in Ruhe an der Luft.</p>
+          </li>
+          <li class="zutat">
+            <h3 class="zutat-name"><span class="nr" aria-hidden="true">3</span> Parmesan</h3>
+            <p>Hart, nussig, salzig. Macht die Kruste extra knusprig.</p>
+            <p class="herkunft"><strong>Parmesan vom Gut Olivenhain:</strong> Große Laibe, gereift zwischen Olivenbäumen. Fein gehobelt schmilzt er zu einer goldenen Knusperschicht.</p>
+          </li>
+          <li class="zutat">
+            <h3 class="zutat-name"><span class="nr" aria-hidden="true">4</span> Bergkäse</h3>
+            <p>Würzig, cremig, zieht Fäden. Die Hauptrolle beim Überbacken.</p>
+            <p class="herkunft"><strong>Bergkäse von der Alm Wolkenblick:</strong> Die Kühe grasen den ganzen Sommer auf der Alm. Der Käse reift monatelang im kühlen Keller. Das schmeckst du in jedem Faden.</p>
+          </li>
+          <li class="zutat">
+            <h3 class="zutat-name"><span class="nr" aria-hidden="true">5</span> Baguette aus Weizen</h3>
+            <p>Handwerklicher Teig, 24 Stunden gereift. Außen knackig, innen fluffig.</p>
+            <p class="herkunft"><strong>Weizen vom Hof Sonnenhang:</strong> Goldene Ähren vor dem Waldrand, gereift in der Abendsonne. Gemahlen wird frisch, gebacken wird mit Zeit. Darum knackt die Kruste so schön.</p>
+          </li>
+        </ol>
+        <div class="zutat-info" id="info-schnittlauch" data-seite="rechts" data-hoehe="oben" role="group" aria-labelledby="titel-schnittlauch">
+          <img src="../img/produkte/anbau-schnittlauch.svg" alt="Zeichnung: Kräuterbeet mit Reihen von Schnittlauch und lila Blüten hinter einem Holzzaun, Sonne über Bäumen" width="320" height="200">
+          <div class="info-text">
+            <h3 id="titel-schnittlauch"><span class="nr" aria-hidden="true">1</span> Schnittlauch</h3>
+            <p>Frisch geschnitten, grün und mild. Der Frischekick obendrauf.</p>
+            <p class="herkunft"><strong>Schnittlauch aus dem Kräutergarten Morgentau:</strong> Gezogen in sonnigen Beeten, geschnitten kurz vor dem Einsatz. Ein bisschen Grün, ganz viel Frische.</p>
+          </div>
+          <button class="zu" type="button" tabindex="-1" aria-label="Schließen">✕</button>
+        </div>
+        <div class="zutat-info" id="info-salami" data-seite="rechts" data-hoehe="oben" role="group" aria-labelledby="titel-salami">
+          <img src="../img/produkte/anbau-salami.svg" alt="Zeichnung: zwei gefleckte Rinder auf einer grünen Weide hinter einem Holzzaun, dahinter ein Fachwerkhof mit Terrakotta-Dach, Waldrand und tief stehende Sonne" width="320" height="200">
+          <div class="info-text">
+            <h3 id="titel-salami"><span class="nr" aria-hidden="true">2</span> Salami vom Weiderind</h3>
+            <p>Aus Rindfleisch, luftgetrocknet, fein gewürzt. Wird im Ofen schön knusprig am Rand.</p>
+            <p class="herkunft"><strong>Rindersalami vom Weidehof Eichenwiese:</strong> Die Rinder stehen das ganze Jahr auf weiten Weiden. Das Fleisch ist fein marmoriert, gewürzt wird nach Hofrezept und getrocknet in Ruhe an der Luft.</p>
+          </div>
+          <button class="zu" type="button" tabindex="-1" aria-label="Schließen">✕</button>
+        </div>
+        <div class="zutat-info" id="info-parmesan" data-seite="rechts" data-hoehe="unten" role="group" aria-labelledby="titel-parmesan">
+          <img src="../img/produkte/anbau-parmesan.svg" alt="Zeichnung: Bauernhaus mit Terrakotta-Dach zwischen Olivenbäumen, davor gestapelte Käselaibe, warme Abendsonne" width="320" height="200">
+          <div class="info-text">
+            <h3 id="titel-parmesan"><span class="nr" aria-hidden="true">3</span> Parmesan</h3>
+            <p>Hart, nussig, salzig. Macht die Kruste extra knusprig.</p>
+            <p class="herkunft"><strong>Parmesan vom Gut Olivenhain:</strong> Große Laibe, gereift zwischen Olivenbäumen. Fein gehobelt schmilzt er zu einer goldenen Knusperschicht.</p>
+          </div>
+          <button class="zu" type="button" tabindex="-1" aria-label="Schließen">✕</button>
+        </div>
+        <div class="zutat-info" id="info-bergkaese" data-seite="links" data-hoehe="unten" role="group" aria-labelledby="titel-bergkaese">
+          <img src="../img/produkte/anbau-bergkaese.svg" alt="Zeichnung: Almhütte vor Berggipfeln mit Schneespitzen, eine gefleckte Kuh auf der Wiese, tief stehende Sonne" width="320" height="200">
+          <div class="info-text">
+            <h3 id="titel-bergkaese"><span class="nr" aria-hidden="true">4</span> Bergkäse</h3>
+            <p>Würzig, cremig, zieht Fäden. Die Hauptrolle beim Überbacken.</p>
+            <p class="herkunft"><strong>Bergkäse von der Alm Wolkenblick:</strong> Die Kühe grasen den ganzen Sommer auf der Alm. Der Käse reift monatelang im kühlen Keller. Das schmeckst du in jedem Faden.</p>
+          </div>
+          <button class="zu" type="button" tabindex="-1" aria-label="Schließen">✕</button>
+        </div>
+        <div class="zutat-info" id="info-weizen" data-seite="links" data-hoehe="oben" role="group" aria-labelledby="titel-weizen">
+          <img src="../img/produkte/anbau-weizen.svg" alt="Zeichnung: goldenes Weizenfeld vor einem dunklen Waldrand, tief stehende Abendsonne, warmer Himmel" width="320" height="200">
+          <div class="info-text">
+            <h3 id="titel-weizen"><span class="nr" aria-hidden="true">5</span> Baguette aus Weizen</h3>
+            <p>Handwerklicher Teig, 24 Stunden gereift. Außen knackig, innen fluffig.</p>
+            <p class="herkunft"><strong>Weizen vom Hof Sonnenhang:</strong> Goldene Ähren vor dem Waldrand, gereift in der Abendsonne. Gemahlen wird frisch, gebacken wird mit Zeit. Darum knackt die Kruste so schön.</p>
+          </div>
+          <button class="zu" type="button" tabindex="-1" aria-label="Schließen">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="daten">
+    <details class="produkt-daten">
+      <summary>Beschreibung &amp; Daten</summary>
+      <p>Ein halbes Baguette mit kräftiger Rindersalami, darüber Bergkäse und Parmesan, im Automaten in 5 Minuten heiß und knusprig gebacken. Die Salami wird am Rand schön kross.</p>
+      <dl>
+        <div><dt>Größe</dt><dd>halbes Baguette, ca. 25 cm lang</dd></div>
+        <div><dt>Gewicht</dt><dd>ca. 230 g</dd></div>
+        <div><dt>Zubereitung</dt><dd>frisch gebacken im Automaten, 5 Minuten</dd></div>
+        <div><dt>Genießen</dt><dd>sofort, solange er heiß ist</dd></div>
+        <div><dt>Grundpreis</dt><dd>27,83 €/kg</dd></div>
+        <div><dt>Allergene</dt><dd>enthält u. a. Weizen (Gluten) und Milch; vollständig unter <a href="#allergene-info">Zutaten &amp; Allergene</a></dd></div>
+      </dl>
+      <p class="klein">Alle Angaben sind Demo-Werte und erfunden.</p>
+    </details>
+    </div>
+  </div>
+</main>
+
+<footer class="fuss">
+  <div class="rahmen">
+    <nav aria-label="Rechtliches">
+      <ul>
+        <li><a href="#platzhalter-info">Impressum</a></li>
+        <li><a href="#platzhalter-info">Datenschutz</a></li>
+        <li><a href="#platzhalter-info">AGB</a></li>
+        <li><a href="#platzhalter-info">Widerrufsbelehrung</a></li>
+        <li><a href="#platzhalter-info">Versand &amp; Zahlung</a></li>
+      </ul>
+    </nav>
+    <p>Zapi! ist ein erfundener Demo-Shop. Alle Produkte, Preise und Standorte sind fiktiv. Alle Illustrationen sind KI-generiert.</p>
+  </div>
+</footer>
+
+<!-- Statusmeldung für „In den Warenkorb“: steht schon beim Laden in der Seite, damit Screenreader sie ansagen (WCAG 4.1.3) -->
+<p class="wk-meldung" role="status" aria-live="polite"></p>
+
+<div id="platzhalter-info" class="meldung" role="dialog" aria-labelledby="ph-titel">
+  <div class="box">
+    <h2 id="ph-titel">Inhalt folgt</h2>
+    <p>Platzhalter: Diese Seite ist im Demo-Shop noch nicht ausgearbeitet.</p>
+    <a class="button" href="#inhalt">Schließen</a>
+  </div>
+</div>
+
+<div id="bestaetigung" class="meldung" role="dialog" aria-labelledby="best-titel">
+  <div class="box">
+    <h2 id="best-titel">Lecker, gute Wahl!</h2>
+    <p>Demo: Dein Zapi! Salami ist vorgemerkt. Es gibt keine echte Bestellung und keine Zahlung.</p>
+    <a class="button" href="../index.html#produkte">Weiter stöbern</a>
+  </div>
+</div>
+
+<div id="allergene-info" class="meldung" role="dialog" aria-labelledby="all-titel">
+  <div class="box">
+    <h2 id="all-titel">Zutaten &amp; Allergene</h2>
+    <p>Platzhalter: Zutaten, Allergene, Menge und Aufbewahrung folgen.</p>
+    <a class="button" href="#produkt-titel">Schließen</a>
+  </div>
+</div>
+
+</body>
+</html>

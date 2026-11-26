@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs><filter id="w" x="-50%" y="-20%" width="200%" height="140%"><feGaussianBlur stdDeviation="4"/></filter></defs>
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-width="9" filter="url(#w)">
+    <path d="M90 130 c-14 -22 14 -40 0 -62 c-10 -16 8 -28 2 -40" opacity=".75"/>
+    <path d="M150 124 c-14 -24 14 -44 0 -70 c-10 -16 8 -30 2 -44" opacity=".85"/>
+    <path d="M210 120 c-14 -24 14 -46 0 -72 c-10 -16 8 -30 2 -44" opacity=".85"/>
+    <path d="M270 124 c-14 -24 14 -44 0 -70 c-10 -16 8 -30 2 -44" opacity=".8"/>
+    <path d="M325 130 c-12 -20 12 -38 0 -58 c-8 -14 6 -24 2 -34" opacity=".7"/>
+  </g>
+</svg>
