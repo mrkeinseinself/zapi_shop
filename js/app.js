@@ -61,7 +61,8 @@
 
   if (!istWeihnachtszeit(new Date()) || !kopf) return;
 
-  html.classList.add("weihnachten");
+  // Standard: ohne Deko. Alles wird vorbereitet, bleibt aber ausgeblendet, bis jemand „Deko hinzufügen“ wählt.
+  html.classList.add("deko-aus", "deko-pause");
 
   // Kugeln hängen unten am Kopfbereich
   var kugeln = document.createElement("div");
@@ -98,7 +99,7 @@
   /* ===== Weihnachtsmann mit Schlitten =====
      Fährt oben (unterhalb der Kugeln) von links nach rechts aus dem Bild, dann unten von rechts nach links, und wieder von vorn.
      Oben wirft er ab und zu einen Mini-Zapi aus seinen Paketen auf eine Kugel; der fällt später unten aus dem Bild.
-     Bei „Bewegung reduzieren“ steht der Schlitten still im Fußbereich. Sonst gibt es den Knopf „Deko anhalten“ (WCAG 2.2.2). */
+     Bei „Bewegung reduzieren“ steht der Schlitten still im Fußbereich. Sonst gibt es den Knopf „Deko entfernen“ (WCAG 2.2.2). */
   var schlitten = document.createElement("div");
   schlitten.className = "schlitten";
   schlitten.setAttribute("aria-hidden", "true");
@@ -235,30 +236,18 @@
     }
   }
 
-  // Zwei Knöpfe in einem Feld („Deko anhalten“, „Deko entfernen“), zusammen so groß wie früher der eine.
-  // Stehen im Code direkt hinter „Zum Inhalt springen“, damit sie per Tab früh erreichbar sind.
-  function dekoKnopf(zeile2) {
-    var k = document.createElement("button");
-    k.type = "button";
-    k.className = "deko-knopf";
-    k.innerHTML = "<span>Deko</span> <span></span>"; // zweizeilig, damit beide nebeneinander in das alte Maß passen
-    k.lastChild.textContent = zeile2;
-    return k;
-  }
-  var dekoFeld = document.createElement("div");
-  dekoFeld.className = "deko-knoepfe";
-  dekoFeld.setAttribute("role", "group");
-  dekoFeld.setAttribute("aria-label", "Weihnachtsdeko");
-  var pauseKnopf = dekoKnopf("anhalten");
-  var entfernenKnopf = dekoKnopf("entfernen");
-  dekoFeld.appendChild(pauseKnopf);
-  dekoFeld.appendChild(entfernenKnopf);
+  // Ein Knopf „Deko entfernen“ / „Deko hinzufügen“ (WCAG 2.2.2: Bewegung über 5 Sekunden muss sich ausblenden lassen).
+  // Steht im Code direkt hinter „Zum Inhalt springen“, damit er per Tab früh erreichbar ist.
+  var dekoKnopf = document.createElement("button");
+  dekoKnopf.type = "button";
+  dekoKnopf.className = "button deko-knopf";
+  dekoKnopf.textContent = "Deko hinzufügen";
   var springen = document.querySelector(".springen");
-  if (springen) springen.insertAdjacentElement("afterend", dekoFeld);
-  else document.body.insertBefore(dekoFeld, document.body.firstChild);
+  if (springen) springen.insertAdjacentElement("afterend", dekoKnopf);
+  else document.body.insertBefore(dekoKnopf, document.body.firstChild);
 
   var KUGELN = [[20, 19], [60, 31], [100, 15], [140, 25]]; // Mitte x und Oberkante y je Kugel, Muster wiederholt sich alle 160 px (img/kugeln.svg)
-  var pausiert = false, entfernt = false, zuletzt = null, weg = 0, naechsterWurf = 0;
+  var pausiert = true, zuletzt = null, weg = 0, naechsterWurf = 0;
   var belegt = {}, anzahlAufKugeln = 0, animationen = [], kugelnOben = 0;
   var fallEbene = document.createElement("div"); // fest stehende Ebene nur für fallende Mini-Zapis
   fallEbene.className = "fall-ebene";
@@ -272,29 +261,17 @@
     return anim;
   }
 
-  pauseKnopf.addEventListener("click", function () {
+  // Entfernen: Kugeln, Schlitten mit Rentieren, Spuren, Schnee, Mini-Zapis und Baum werden ausgeblendet und angehalten.
+  // Hinzufügen: alles kommt zurück und läuft weiter. Gilt bis zum nächsten Laden der Seite.
+  dekoKnopf.addEventListener("click", function () {
     pausiert = !pausiert;
     html.classList.toggle("deko-pause", pausiert);
-    pauseKnopf.lastChild.textContent = pausiert ? "weiter" : "anhalten";    animationen.forEach(function (a) { if (pausiert) a.pause(); else a.play(); });
-    if (!pausiert) { zuletzt = null; requestAnimationFrame(schritt); }
-  });
-
-  // „Deko entfernen“: aller Weihnachtsschmuck verschwindet (Kugeln, Schlitten mit Rentieren, Spuren, Schnee,
-  // Mini-Zapis, Baum), dazu die Knöpfe selbst. Gilt bis zum nächsten Laden der Seite.
-  entfernenKnopf.addEventListener("click", function () {
-    entfernt = true; pausiert = true;
-    clearTimeout(neuBauen); clearTimeout(sammelZeit);
-    animationen.slice().forEach(function (a) { a.cancel(); });
-    window.removeEventListener("resize", flaechenGroesse);
-    window.removeEventListener("resize", flaechenVeraltet);
-    window.removeEventListener("scroll", flaechenVeraltet);
-    document.removeEventListener("click", flaechenVeraltet);
-    window.removeEventListener("resize", spaeterNeuBauen);
-    window.removeEventListener("scroll", kugelnScroll);
-    [kugeln, schnee, baum, dekoEbene, spurFlaeche, fallEbene, dekoFeld].forEach(function (el) { el.remove(); });
-    html.classList.remove("weihnachten", "deko-pause");
-    var inhalt = document.getElementById("inhalt"); // Fokus nicht im Nichts lassen
-    if (inhalt) { inhalt.setAttribute("tabindex", "-1"); inhalt.focus({ preventScroll: true }); }
+    html.classList.toggle("deko-aus", pausiert);
+    html.classList.toggle("weihnachten", !pausiert); // ohne Kugeln braucht der Inhalt oben keinen Extra-Platz
+    dekoKnopf.textContent = pausiert ? "Deko hinzufügen" : "Deko entfernen";
+    animationen.forEach(function (a) { if (pausiert) a.pause(); else a.play(); });
+    if (pausiert) { stift.clearRect(0, 0, window.innerWidth, window.innerHeight); spur = []; tritte = []; }
+    else { baueBahn(); flaechenVeraltet(); zuletzt = null; requestAnimationFrame(schritt); }
   });
 
   function wirf(sx, sy, kugelX, kugelOben, k) {
@@ -374,14 +351,14 @@
   function spaeterNeuBauen() { clearTimeout(neuBauen); neuBauen = setTimeout(baueBahn, 150); }
   window.addEventListener("resize", spaeterNeuBauen);
   function kugelnScroll() { // Kopfbereich klebt oben: Kugeln wandern nur bis dahin mit
-    if (!mass) return;
+    if (!mass || pausiert) return;
     var neu = kugeln.getBoundingClientRect();
     kugelnOben = neu.top;
     if (Math.abs(neu.bottom - mass.k.bottom) > 4) spaeterNeuBauen();
   }
   window.addEventListener("scroll", kugelnScroll, { passive: true });
   baueBahn();
-  if (window.fetch) setTimeout(function () { if (!entfernt) baueBahn(); }, 1200); // nach dem Einsetzen der Schlitten-SVG stimmt die Höhe
+  if (window.fetch) setTimeout(function () { if (!pausiert) baueBahn(); }, 1200); // nach dem Einsetzen der Schlitten-SVG stimmt die Höhe
 
   var bildNr = 0;
   function schritt(jetzt) {
